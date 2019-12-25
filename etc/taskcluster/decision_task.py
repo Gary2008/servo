@@ -787,11 +787,12 @@ def wpt_chunks(platform, make_chunk_task, build_task, total_chunks, processes,
                         --total-chunks "$TOTAL_CHUNKS" \
                         --this-chunk "$THIS_CHUNK" \
                         --log-raw test-wpt.log \
-                        --log-jsonsummary wpt-jsonsummary.log \
+                        --log-servojson wpt-jsonsummary.log \
                         --always-succeed \
                         | cat
+                    grep -v 'Network error' wpt-jsonsummary.log >filtered-wpt-jsonsummary.log
                     ./mach filter-intermittents \
-                        wpt-jsonsummary.log \
+                        filtered-wpt-jsonsummary.log \
                         --log-intermittents intermittents.log \
                         --log-filteredsummary filtered-wpt-errorsummary.log \
                         --tracker-api default \
@@ -809,8 +810,9 @@ def wpt_chunks(platform, make_chunk_task, build_task, total_chunks, processes,
                         --log-errorsummary wpt-errorsummary.log \
                         --always-succeed \
                         | cat
+                    grep -v 'Network error' wpt-errorsummary.log >filtered-wpt-errorsummary.log
                     ./mach filter-intermittents \
-                        wpt-errorsummary.log \
+                        filtered-wpt-errorsummary.log \
                         --log-intermittents intermittents.log \
                         --log-filteredsummary filtered-wpt-errorsummary.log \
                         --tracker-api default \

@@ -13,11 +13,13 @@ def main(task_for):
     decisionlib.Task.with_repo_bundle = lambda s, *args, **kwargs: s.with_repo(*args, *kwargs)
     commits = [
         "7474b309b45403a031c7b69c31d99f00d3bfcfb8",
-        "e5689df6b44696bf24f8757cd1f6e14d1aabf6f0",
-        "97f1300739120c3e34e7d146da47c8f84e929e2b",
-        "39963266ae842d37ceff1502a2936b4acbf9037d",
-        "d657a6c6e885cc3bc58f82e8616b50d358fe8ece",
-        "bac9903fbeed0a394a86c0091e727aada665433d",
+        "a33d493a4ff6f8a629a9b82202c49c41ecbefa49", # revision previous to suspected culprit
+        "9a518cf7979b79b34611135d09c1dd0a96945255", # suspected culprit
+        #"e5689df6b44696bf24f8757cd1f6e14d1aabf6f0", # failure observed in this revision
+        #"97f1300739120c3e34e7d146da47c8f84e929e2b",
+        #"39963266ae842d37ceff1502a2936b4acbf9037d",
+        #"d657a6c6e885cc3bc58f82e8616b50d358fe8ece",
+        #"bac9903fbeed0a394a86c0091e727aada665433d",
     ]
     CONFIG.initial_git_sha = CONFIG.git_sha
     # with decisionlib.make_repo_bundle():

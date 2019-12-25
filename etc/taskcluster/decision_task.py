@@ -778,24 +778,44 @@ def wpt_chunks(platform, make_chunk_task, build_task, total_chunks, processes,
                     --reporter-api default
             """)
         else:
-            task.with_script("""
-                ./mach test-wpt \
-                    --release \
-                    $WPT_ARGS \
-                    --processes $PROCESSES \
-                    --total-chunks "$TOTAL_CHUNKS" \
-                    --this-chunk "$THIS_CHUNK" \
-                    --log-raw test-wpt.log \
-                    --log-errorsummary wpt-errorsummary.log \
-                    --always-succeed \
-                    | cat
-                ./mach filter-intermittents \
-                    wpt-errorsummary.log \
-                    --log-intermittents intermittents.log \
-                    --log-filteredsummary filtered-wpt-errorsummary.log \
-                    --tracker-api default \
-                    --reporter-api default
-            """)
+            if CONFIG.git_sha == "bac9903fbeed0a394a86c0091e727aada665433d":
+                task.with_script("""
+                    ./mach test-wpt \
+                        --release \
+                        $WPT_ARGS \
+                        --processes $PROCESSES \
+                        --total-chunks "$TOTAL_CHUNKS" \
+                        --this-chunk "$THIS_CHUNK" \
+                        --log-raw test-wpt.log \
+                        --log-jsonsummary wpt-jsonsummary.log \
+                        --always-succeed \
+                        | cat
+                    ./mach filter-intermittents \
+                        wpt-jsonsummary.log \
+                        --log-intermittents intermittents.log \
+                        --log-filteredsummary filtered-wpt-errorsummary.log \
+                        --tracker-api default \
+                        --reporter-api default
+                """)                
+            else:
+                task.with_script("""
+                    ./mach test-wpt \
+                        --release \
+                        $WPT_ARGS \
+                        --processes $PROCESSES \
+                        --total-chunks "$TOTAL_CHUNKS" \
+                        --this-chunk "$THIS_CHUNK" \
+                        --log-raw test-wpt.log \
+                        --log-errorsummary wpt-errorsummary.log \
+                        --always-succeed \
+                        | cat
+                    ./mach filter-intermittents \
+                        wpt-errorsummary.log \
+                        --log-intermittents intermittents.log \
+                        --log-filteredsummary filtered-wpt-errorsummary.log \
+                        --tracker-api default \
+                        --reporter-api default
+                """)
         task.with_artifacts(*[
             "%s/%s" % (repo_dir, word)
             for script in task.scripts

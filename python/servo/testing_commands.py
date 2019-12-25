@@ -539,6 +539,8 @@ class MachCommands(CommandBase):
         actual_failures = []
         intermittents = []
         for failure in failures:
+            if not 'test' in failure:
+                continue
             if tracker_api:
                 if tracker_api == 'default':
                     tracker_api = "https://build.servo.org/intermittent-tracker"

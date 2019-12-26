@@ -12,9 +12,9 @@ from decisionlib import CONFIG, SHARED
 def main(task_for):
     decisionlib.Task.with_repo_bundle = lambda s, *args, **kwargs: s.with_repo(*args, *kwargs)
     commits = [
-        "7474b309b45403a031c7b69c31d99f00d3bfcfb8",
+        #"7474b309b45403a031c7b69c31d99f00d3bfcfb8",
         "a33d493a4ff6f8a629a9b82202c49c41ecbefa49", # revision previous to suspected culprit
-        "9a518cf7979b79b34611135d09c1dd0a96945255", # suspected culprit
+        "9a518cf7979b79b34611135d09c1dd0a96945255", # earliest failure observed in this revision
         #"e5689df6b44696bf24f8757cd1f6e14d1aabf6f0", # failure observed in this revision
         #"97f1300739120c3e34e7d146da47c8f84e929e2b",
         #"39963266ae842d37ceff1502a2936b4acbf9037d",

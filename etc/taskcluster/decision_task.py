@@ -12,14 +12,14 @@ from decisionlib import CONFIG, SHARED
 def main(task_for):
     decisionlib.Task.with_repo_bundle = lambda s, *args, **kwargs: s.with_repo(*args, *kwargs)
     commits = [
-        #"7474b309b45403a031c7b69c31d99f00d3bfcfb8",
-        "a33d493a4ff6f8a629a9b82202c49c41ecbefa49", # revision previous to suspected culprit
-        "9a518cf7979b79b34611135d09c1dd0a96945255", # earliest failure observed in this revision
-        #"e5689df6b44696bf24f8757cd1f6e14d1aabf6f0", # failure observed in this revision
-        #"97f1300739120c3e34e7d146da47c8f84e929e2b",
-        #"39963266ae842d37ceff1502a2936b4acbf9037d",
-        #"d657a6c6e885cc3bc58f82e8616b50d358fe8ece",
-        #"bac9903fbeed0a394a86c0091e727aada665433d",
+        "38e4ae0833fbc15c8579d40bca7fc87e9d37cb03",
+        "fd260f78c80a070727ba88d7b5f7cc40eb7efb5a",
+        "7c365b0324b2723d5df2437e59555bfc1835a68f",
+        "2aa5ddf9221b77a6144391eb37855737a9ede083",
+        "91dfa354b16535f1c55c722b10cf4538f2385e0e",
+        
+        #"a33d493a4ff6f8a629a9b82202c49c41ecbefa49", # revision previous to suspected culprit
+        #"9a518cf7979b79b34611135d09c1dd0a96945255", # earliest failure observed in this revision
     ]
     CONFIG.initial_git_sha = CONFIG.git_sha
     # with decisionlib.make_repo_bundle():
